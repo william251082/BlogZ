@@ -12,5 +12,8 @@
  */
 
 return [
-    // ...
+    'db' => [
+        'driver' => 'Pdo',
+        'dsn'    => sprintf('sqlite:%s/data/Blog.db', realpath(getcwd())),
+    ],
 ];
