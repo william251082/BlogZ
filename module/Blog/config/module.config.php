@@ -9,10 +9,13 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 return [
     'service_manager' => [
         'aliases' => [
-            Model\PostRepositoryInterface::class => Model\PostRepository::class,
+            // Update this line:
+            Model\PostRepositoryInterface::class => Model\ZendDbSqlRepository::class,
         ],
         'factories' => [
             Model\PostRepository::class => InvokableFactory::class,
+            // Add this line:
+            Model\ZendDbSqlRepository::class => Factory\ZendDbSqlRepositoryFactory::class,
         ],
     ],
     'controllers' => [
