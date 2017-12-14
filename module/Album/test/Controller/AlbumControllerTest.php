@@ -78,5 +78,6 @@ class AlbumControllerTest extends AbstractHttpControllerTestCase
     $this->dispatch('/album/add', 'POST', $postData);
     $this->assertResponseStatusCode(302);
     $this->assertRedirectTo('/album');
+    $this->albumTable->getAlbum($id)->willReturn(new Album());
 }
 }
