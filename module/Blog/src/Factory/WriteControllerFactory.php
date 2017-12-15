@@ -2,6 +2,7 @@
 
 namespace Blog\Factory;
 
+use Blog\Model\PostRepositoryInterface;
 use Blog\Controller\WriteController;
 use Blog\Form\PostForm;
 use Blog\Model\PostCommandInterface;
@@ -18,10 +19,12 @@ class WriteControllerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $formManager = $container->get('FormElementManager');
-        return new WriteController(
-            $container->get(PostCommandInterface::class),
-            $formManager->get(PostForm::class)
-        );
+    $formManager = $container->get('FormElementManager');
+
+    return new WriteController(
+        $container->get(PostCommandInterface::class),
+        $formManager->get(PostForm::class),
+        $container->get(PostRepositoryInterface::class)
+    );
     }
 }
